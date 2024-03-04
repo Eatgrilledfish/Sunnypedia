@@ -1,30 +1,40 @@
 from flask import Flask
-from flask_restx import Api, Resource, fields
-from flask_cors import CORS
+from flask_restx import Api, Resource,fields
+import firebase_admin
+from firebase_admin import credentials, db
 
-app = Flask(__name__)
-# 允许来自任何来源的跨域请求到 /api/ 路径。
-CORS(app, resources={r"/*": {"origins": "*"}})
-app.config["SECRET_KEY"] = "12345678"
-
-api = Api(app, version='1.0', title='Sample API',
-          description='A sample API')
-
-
-ns = api.namespace('hello', description='Hello operations')
-
-# model
-hello_model = api.model('HelloModel', {
-    'message': fields.String(required=True, description='A hello message')
+# 初始化Firebase Admin
+cred = credentials.Certificate('./serviceAccountKey.json')
+firebase_admin.initialize_app(cred, {
+    'databaseURL':"https://sunnypedia-g13-default-rtdb.firebaseio.com"
 })
 
-@ns.route('/')  # rounter
-class HelloWorld(Resource):
-    @ns.doc('get_hello')  # Document description
-    @ns.marshal_with(hello_model)  # output
+
+app = Flask(__name__)
+api = Api(app, 
+          version='1.0', 
+          title='Sample API',
+          description='A sample API using Flask-RESTx and Swagger UI')
+
+ns = api.namespace('data', description='Data operations')
+# 定义一个资源
+@ns.route('/')
+class DataList(Resource):
     def get(self):
-        '''Fetch a greeting'''
-        return {'message': 'Hello, World!'}
+        """List all data"""
+        ref = db.reference('some/path')  # 指定数据库中的路径
+        data = ref.get()
+        return data
+
+    @api.expect(api.model('DataModel', {
+        'name': fields.String(required=True, description='The name'),
+        'age': fields.Integer(required=True, description='The age')
+    }))
+    def post(self):
+        """Create a new data entry"""
+        ref = db.reference('some/path')  # 指定数据库中的路径
+        ref.push(api.payload)
+        return {'message': 'Data added successfully.'}, 201
 
 if __name__ == '__main__':
     app.run(debug=True)
