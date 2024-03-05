@@ -22,9 +22,9 @@ This repository contains the Sunnypedia Flask application, which is a web applic
 
 **Nginx** acts as a reverse proxy, situated "in front" of Gunicorn's "backend." It first receives requests from clients, but here the "frontend" is in relation to the server-side architecture, meaning Nginx handles incoming external requests and decides how to communicate with internal services (like Gunicorn).
 
-13.237.185.73:8000
+BacknEnd Api: [13.237.185.73:8000](http://13.237.185.73:8000/)
 
-https://sunnypedia-g13.web.app/
+FrontEnd page: http://13.237.185.73:80/
 
 
 
