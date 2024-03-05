@@ -26,5 +26,13 @@ BacknEnd Api: [13.237.185.73:8000](http://13.237.185.73:8000/)
 
 FrontEnd page: http://13.237.185.73:80/
 
+Database: Mysql
+ip:13.237.185.73
+port:3306
+user: remote_user
+password: Sunnypediag13!
+
+
+
 
 
