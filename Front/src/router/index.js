@@ -5,6 +5,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import SunscreenCalculator from '../components/SunscreenCalculator.vue';
 import UvaAware from '../components/UvaAware.vue';
 import Home from '../components/Home.vue';
+import Uvmap from '../components/UvMap.vue';
 
 
 // 可以继续导入其他页面组件
@@ -24,6 +25,11 @@ const routes = [
     path: '/uva-aware',
     name: 'UvaAware',
     component: UvaAware
+  },
+  {
+    path: '/uv-map',
+    name: 'Uvmap',
+    component: Uvmap
   },
   // 定义其他路由
 ]
