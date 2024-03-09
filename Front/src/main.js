@@ -7,3 +7,5 @@ import 'element-plus/dist/index.css'
 import router from './router';
 import 'echarts'
 
+
+createApp(App).use(ElementPlus).use(router).mount('#app')
