@@ -8,81 +8,85 @@ import SupportIcon from './icons/IconSupport.vue'
 </script>
 
 <template>
-  <WelcomeItem>
-    <template #icon>
-      <DocumentationIcon />
-    </template>
-    <template #heading>Documentation</template>
+<div class="UVAware">
+  <div class="column" v-for="(item, index) in items" :key="index">
+    <div class="content-wrapper">
+      <img :src="item.image" :alt="`Image ${index + 1}`" class="image">
+      <h2>{{ item.heading1 }}</h2>
+      <p>{{ item.text1 }}</p>
+    </div>
+    <div class="subheading" v-if="item.heading2">
+      <h3>{{ item.heading2 }}</h3>
+    </div>
+    <p>{{ item.text2 }}</p>
+  </div>
+</div>
 
-    Vue’s
-    <a href="https://vuejs.org/" target="_blank" rel="noopener">official documentation</a>
-    provides you with all information you need to get started.
-  </WelcomeItem>
-
-  <WelcomeItem>
-    <template #icon>
-      <ToolingIcon />
-    </template>
-    <template #heading>Tooling</template>
-
-    This project is served and bundled with
-    <a href="https://vitejs.dev/guide/features.html" target="_blank" rel="noopener">Vite</a>. The
-    recommended IDE setup is
-    <a href="https://code.visualstudio.com/" target="_blank" rel="noopener">VSCode</a> +
-    <a href="https://github.com/johnsoncodehk/volar" target="_blank" rel="noopener">Volar</a>. If
-    you need to test your components and web pages, check out
-    <a href="https://www.cypress.io/" target="_blank" rel="noopener">Cypress</a> and
-    <a href="https://on.cypress.io/component" target="_blank" rel="noopener"
-      >Cypress Component Testing</a
-    >.
-
-    <br />
-
-    More instructions are available in <code>README.md</code>.
-  </WelcomeItem>
-
-  <WelcomeItem>
-    <template #icon>
-      <EcosystemIcon />
-    </template>
-    <template #heading>Ecosystem</template>
-
-    Get official tools and libraries for your project:
-    <a href="https://pinia.vuejs.org/" target="_blank" rel="noopener">Pinia</a>,
-    <a href="https://router.vuejs.org/" target="_blank" rel="noopener">Vue Router</a>,
-    <a href="https://test-utils.vuejs.org/" target="_blank" rel="noopener">Vue Test Utils</a>, and
-    <a href="https://github.com/vuejs/devtools" target="_blank" rel="noopener">Vue Dev Tools</a>. If
-    you need more resources, we suggest paying
-    <a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">Awesome Vue</a>
-    a visit.
-  </WelcomeItem>
-
-  <WelcomeItem>
-    <template #icon>
-      <CommunityIcon />
-    </template>
-    <template #heading>Community</template>
-
-    Got stuck? Ask your question on
-    <a href="https://chat.vuejs.org" target="_blank" rel="noopener">Vue Land</a>, our official
-    Discord server, or
-    <a href="https://stackoverflow.com/questions/tagged/vue.js" target="_blank" rel="noopener"
-      >StackOverflow</a
-    >. You should also subscribe to
-    <a href="https://news.vuejs.org" target="_blank" rel="noopener">our mailing list</a> and follow
-    the official
-    <a href="https://twitter.com/vuejs" target="_blank" rel="noopener">@vuejs</a>
-    twitter account for latest news in the Vue world.
-  </WelcomeItem>
-
-  <WelcomeItem>
-    <template #icon>
-      <SupportIcon />
-    </template>
-    <template #heading>Support Vue</template>
-
-    As an independent project, Vue relies on community backing for its sustainability. You can help
-    us by
-    <a href="https://vuejs.org/sponsor/" target="_blank" rel="noopener">becoming a sponsor</a>.
-  </WelcomeItem>
 </template>
+
+<script>
+import TemperatureAnomaly from '@/assets/Temperature Anomaly.png';
+import OzoneHole from '@/assets/The ozone hole.png';
+export default {
+  name: 'ThreeColumns',
+  data() {
+    return {
+      items: [
+        {
+          image: TemperatureAnomaly,
+          heading1: "FIRST,THERE'S HEAT",
+          text1: 'Global warming is a comparative measure with the pre-industrial (1850-1900s) average Earth temperatures as baseline.',
+          heading2: 'Did you know?',
+          text2: 'The Earth gets a little warmer everyday. The past 9 years have been the warmest since 1800s.'
+        },
+        {
+          image: OzoneHole,
+          heading1: "THEN, THERE'RE HOLES",
+          text1: 'Stratospheric ozone that forms a layer above Earth absorbs UV-B and protects all life on Earth.',
+          heading2: 'Did you know?',
+          text2: 'In 2023, the ozone layer opened up aobce Antartica spanning 3 times the size of Australia.'
+        },
+        {
+          image: 'path/to/your/image3.jpg',
+          heading1: "FINALLY, THERE'S DISEASE",
+          text1: 'UV damages your DNA, if your body cannot repair it, the cells grows uncontrollably and form a tumor.',
+          heading2: 'Did you know?',
+          text2: 'The Australian (ASR) rates of meanoma of skin (canser) increased by 2020-2022.'
+        }
+      ]
+    }
+  }
+}
+</script>
+
+<style>
+.UVAware {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+.column {
+  flex: 1;
+  margin: 10px;
+  text-align: left;
+  align-items: flex-start;
+}
+.content-wrapper, .subheading {
+  width: 100%; /* 确保包裹元素占满列的宽度 */
+}
+.column h2 {
+  text-align: center;
+}
+.image {
+  max-width: 500px;
+  height: 330px; /* 或你希望的固定高度 */
+
+}
+.column h3 {
+  align-items: flex-start;
+}
+h2, h3 {
+  margin: 10px 0;
+}
+</style>
