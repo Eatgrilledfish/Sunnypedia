@@ -2,6 +2,8 @@ from flask import Flask,request
 from flask_restx import Api, Resource,fields
 from flask_cors import CORS
 from calculate_sunscreen import calculate_sunscreen_amount
+from UvindexApi import process_weather_data, fetch_weather_data
+
 
 
 app = Flask(__name__)
@@ -23,6 +25,10 @@ sunscreen_model = api.model('SunscreenCalculation', {
     'top': fields.String(description='Topwear option selected by the user'),
     'bottom': fields.String(description='Bottomwear option selected by the user'),
     'shoes': fields.String(description='Shoes option selected by the user'),
+})
+
+weather_model = api.model('WeatherData', {
+    'suburb': fields.String(required=True, description='Suburb name for weather data fetching'),
 })
 
 # 定义一个资源
@@ -63,6 +69,23 @@ class SunscreenCalculation(Resource):
         
         # Return the result
         return result
+
+@ns.route('/weather')
+class WeatherData(Resource):
+    @api.expect(weather_model)
+    def post(self):
+        # 提取请求中的数据
+        data = api.payload
+        suburb = data['suburb']
+        appid = 'c7f5a3b4b7b713345d680d03698ec31f'
+        # Fetch and process weather data
+        data = fetch_weather_data(suburb, appid)
+        if data:
+            processed_data = process_weather_data(data)
+            return processed_data
+        else:
+            return "Failed to fetch weather data"
+
 
 
 if __name__ == '__main__':
