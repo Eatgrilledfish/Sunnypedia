@@ -3,6 +3,7 @@ from flask_restx import Api, Resource,fields
 from flask_cors import CORS
 from calculate_sunscreen import calculate_sunscreen_amount
 from UvindexApi import process_weather_data, fetch_weather_data
+import mysql.connector
 
 
 
@@ -15,6 +16,16 @@ api = Api(app,
           description='A sample API using Flask-RESTx and Swagger UI')
 
 ns = api.namespace('data', description='Data operations')
+
+db_config = {
+    'user': 'remote_user',
+    'password': 'Sunnypediag13!',
+    'host': '13.237.185.73',
+    'port': 3306,
+    'database': 'Mysql',
+    'raise_on_warnings': True,
+}
+
 
 # define a data model
 sunscreen_model = api.model('SunscreenCalculation', {
@@ -85,6 +96,22 @@ class WeatherData(Resource):
             return processed_data
         else:
             return "Failed to fetch weather data"
+        
+@ns.route('/suburbs')
+class Suburbs(Resource):
+    def get(self):
+        """Return a list of all suburbs from the database"""
+        try:
+            conn = mysql.connector.connect(**db_config)
+            cursor = conn.cursor()
+            cursor.execute("SELECT DISTINCT suburb FROM postcodes_geo")
+            suburbs = cursor.fetchall()
+            cursor.close()
+            conn.close()
+            return [suburb[0] for suburb in suburbs]
+        except Exception as e:
+            api.abort(500, str(e))
+
 
 
 
