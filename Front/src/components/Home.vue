@@ -41,7 +41,8 @@ export default {
       // 添加走马灯的数据
       items: [
         { id: 1, imageSrc: femaleImage, text_name: 'TESTOMONIALS' , text_content : "Discovering this website revolutionized my skincare routine. From UV index insights to personalized sunscreen calculations, it's become my go-to for staying protected and informed. Highly recommend!"},
-        { id: 2, imageSrc: femaleImage, text_name: '第二张图片的描述' ,text_content : 'sssss'},
+        { id: 2, imageSrc: femaleImage, text_name: 'Title of second persona' ,text_content : 'sssssssssssssssssssssssssssssssssssssssssssssssssssssss'},
+        { id: 3, imageSrc: femaleImage, text_name: 'Title of Third persona' ,text_content : 'sssssssssssssssssssssssssssssssssssssssssssssssssssssss'},
       ]
     };
   },
