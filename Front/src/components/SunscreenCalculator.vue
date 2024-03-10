@@ -17,7 +17,7 @@
 
     <div style="display: flex; align-items: flex-start;">
       <!-- 图片部分 -->
-      <div style="margin-left: 500px;"> <!-- 根据需要调整右边距 -->
+      <div  style="margin-left: 500px;"> <!-- 根据需要调整右边距 -->
         <img :src="outlineImageUrl" alt="Outline Image" style="width: auto; max-width: 200px; max-height: 100%;">
       </div>
 
@@ -87,6 +87,10 @@
 
         <button type="submit">Submit</button>
         </form>
+        <div class="results-container" v-if="calculationResult" style="margin-top: 20px; text-align: center;">
+          <h2>Sunscreen Calculation Result</h2>
+          <p>{{ calculationResult }}</p>
+        </div>
       </div>
     </div>
   </div>
@@ -113,6 +117,7 @@ export default {
       shoes: '',
       sunOutlineImageUrl: sunOutlineImage,
       outlineImageUrl: outlineImage,
+      calculationResult: null,
     };
   },
   methods: {
@@ -132,14 +137,27 @@ export default {
         .then(response => {
           // 这里处理后端返回的响应
           console.log(response.data);
+          this.calculationResult = `You need to apply approximately ${response.data.teaspoons} teaspoons (${response.data.milliliters}ml) of sunscreen every 2 hours when outside.\n\nNo sunscreen provides 100% protection so always use with a broad brimmed hat, sunglasses, covering clothing, and shade.`;
           alert("Sunscreen calculation result: " + JSON.stringify(response.data));
         })
         .catch(error => {
           // 处理错误
-          console.error(error);
+          console.error(error);this.calculationResult = "Failed to calculate sunscreen amount.";
           alert("Failed to calculate sunscreen amount.");
         });
     },
   },
 };
 </script>
+
+
+<style>
+.results-container {
+
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  max-width: 350px; /* Adjust as needed */
+}
+</style>
