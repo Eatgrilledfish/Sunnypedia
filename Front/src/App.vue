@@ -2,7 +2,9 @@
   <el-container>
     <el-header>
       <!-- 导航栏 -->
-      <img src="./assets/logo.png" alt="logo" style="width: 180px; height: auto;" />
+      <a href = "http://localhost:5173/">
+        <img src="./assets/logo.png" alt="logo" style="width: 180px; height: auto;" />
+      </a>
       <el-menu
         :default-active="activeIndex"
         class="el-menu-demo"
