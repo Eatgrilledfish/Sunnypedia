@@ -54,7 +54,7 @@
               <option value="">None</option>
               <option value="long_sleeved">Long-sleeved top</option>
               <option value="short_sleeved">Short-sleeved top</option>
-              <option value="vest">Short-sleeved top</option>
+              <option value="vest">vest</option>
               <option v-if="gender === 'female'" value="full_body_swimsuit">full-body swimsuit</option>
               <option v-if="gender === 'female'" value="swimsuit">swimsuit</option>
               <!-- 添加更多上衣选项 -->
