@@ -22,8 +22,9 @@
             <img class="carousel-image" :src="item.imageSrc" alt="图片描述" />
             <!-- 文字描述 -->
             <div class="carousel-text">
-              <h3>{{ item.text_name }}</h3>
               <p>{{ item.text_content }}</p>
+              <h3>{{ item.text_name }}</h3>
+              
             </div>
           </div>
         </el-carousel-item>
@@ -34,15 +35,17 @@
 
 
 <script>
-import femaleImage from '@/assets/female.png';
+import femaleImage1 from '@/assets/female1.avif';
+import femaleImage2 from '@/assets/female2.jpg';
+import femaleImage3 from '@/assets/female3.jpg';
 export default {
   data() {
     return {
       // 添加走马灯的数据
       items: [
-        { id: 1, imageSrc: femaleImage, text_name: 'TESTOMONIALS' , text_content : "Discovering this website revolutionized my skincare routine. From UV index insights to personalized sunscreen calculations, it's become my go-to for staying protected and informed. Highly recommend!"},
-        { id: 2, imageSrc: femaleImage, text_name: 'Title of second persona' ,text_content : 'sssssssssssssssssssssssssssssssssssssssssssssssssssssss'},
-        { id: 3, imageSrc: femaleImage, text_name: 'Title of Third persona' ,text_content : 'sssssssssssssssssssssssssssssssssssssssssssssssssssssss'},
+        { id: 1, imageSrc: femaleImage1, text_name: 'SARAH D', text_content: "\"Discovering this website revolutionized my skincare routine. From UV index insights to personalized sunscreen calculations, it's become my go-to for staying protected and informed. Highly recommend!\""},
+        { id: 2, imageSrc: femaleImage2, text_name: 'Anne Zimmer' ,text_content : "\"Sunnypedia is my go-to for sun protection. With its intuitive interface, I easily find UPF clothing and accessories tailored to the day's UV index. The clickable UV index scale simplifies selection. From hats to goggles, Sunnypedia offers comprehensive options. Now, I confidently enjoy outdoor activities knowing I'm shielded from harmful UV rays. For effortless sun protection, Sunnypedia is unmatched.\""},
+        { id: 3, imageSrc: femaleImage3, text_name: 'Jamie H' ,text_content : "\"SunnyPedia is a lifesaver for parents like me, prioritizing our children's health. Their website spreads crucial awareness about sun exposure, backed by eye-opening trendline charts of skin cancer in Australia. SunnyPedia empowers informed decisions, equipping us with essential knowledge and tools to safeguard our kids. With SunnyPedia, I feel confident in protecting my children from harmful UV exposure. Highly recommended for all parents concerned about sun safety.\""},
       ]
     };
   },
@@ -107,26 +110,36 @@ export default {
   align-items: center;
   justify-content: flex-start; /* 使内容靠左对齐 */
   padding-left: 100px; /* 图片左侧的间距 */
-  padding-right: 20px; /* 文本右侧的间距 */
+  padding-right: 100px; /* 文本右侧的间距 */
+  
 }
 
 .carousel-image {
-  flex: 1 0 50%; /* 允许图片占据更多空间，基础宽度设置为50% */
-  max-width: 50%; /* 增加图片的最大宽度，让图片变大 */
-  height: auto;
-  margin-right: 20px; /* 图片和文本之间的间距 */
+  flex: 1 0 auto; /* 修改为 auto 或具体的宽度值，根据需要调整 */
+  max-width: 450px; /* 允许图片宽度自动调整 */
+  height: auto; /* 保持图片高度自动，以维持比例 */
+  object-fit: contain; /* 保证图片按比例缩放，完整显示 */
+  margin-right: 40px; /* 保留原有的间距 */
 }
-
-.carousel-text {
-  flex: 1 0 40%; /* 减少文本框的基础宽度，限制其成长 */
-  padding-right: 20px; /* 文本的右侧添加间距 */
-}
-
-
 
 .el-carousel {
-  max-height: 400px;
-  height: auto;
-  width: 100%;
+  max-height: 400px; /* 如果需要，可以调整或移除最大高度限制 */
+  height: auto; /* 保持自动高度，适应图片大小 */
+  width: 100%; /* 保持原有的宽度设置 */
 }
+
+
+.carousel-text {
+  display: flex; /* 启用 flex 布局 */
+  flex-direction: column; /* 设置项目垂直排列 */
+  align-items: center; /* 水平方向上居中对齐项目 */
+  justify-content: center; /* 垂直方向上居中对齐项目 */
+  text-align: center; /* 确保文本在其容器中居中 */
+  flex: 1 0 40%; /* 根据需要调整宽度和基础设置 */
+  padding: 20px; /* 添加一些内边距，根据需要调整 */
+
+}
+
+
+
 </style>
