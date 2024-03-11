@@ -2,7 +2,7 @@
   <el-container>
     <el-header>
       <!-- 导航栏 -->
-      <a herf = "http://localhost:5173/">
+      <a href = "http://localhost:5173/">
         <img src="./assets/logo.png" alt="logo" style="width: 180px; height: auto;" />
       </a>
       <el-menu
@@ -94,12 +94,9 @@ export default {
 .el-menu-item {
   font-size: 18px; 
   padding-right: 80px;
-<<<<<<< HEAD
   font-family: "Papyrus"; 
   font-weight: 700;
-=======
   transition: none !important;
->>>>>>> dd9a7a859596f49b865142a3b5e16bbf7c7c592d
 }
 
 .pediabg {

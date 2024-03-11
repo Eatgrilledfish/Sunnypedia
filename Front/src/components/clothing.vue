@@ -1,9 +1,9 @@
 <template>
   <div class="container">
     <!-- 居中的标题 -->
-    <h1 class="heading">IF YOU CAN SEE SKIN, SO CAN UV</h1>
+    <h1 class="heading">IF YOU CAN SEE SKIN, SO CAN <a href="https://www.sunsmart.com.au/downloads/resources/info-sheets/sun-protective-clothing-info-sheet.pdf" class="fancy-link">UV</a></h1>
     <!-- 下面的一行文本 -->
-    <p class="text">UPF (Ultraviolet Protection Factor) measures the amount of UV radiation a fabric permits to reach your skin. UPF 50 blocks 98% of the sun's rays, significantly reducing your exposure risk.</p>
+    <p class="text"><a href="https://www.skincancer.org/skin-cancer-prevention/sun-protection/sun-protective-clothing/" class="fancy-link">UPF (Ultraviolet Protection Factor)</a> measures the amount of UV radiation a fabric permits to reach your skin. UPF 50 blocks 98% of the sun's rays, significantly reducing your exposure risk.</p>
     <!-- 正下方居中的图片 -->
     <div class="image-and-text">
       <div class="left-content">
@@ -152,5 +152,8 @@ export default {
   
 }
 
-
+.fancy-link {
+  color: #c09c84; /* 链接的颜色 */
+  text-decoration: none; /* 去掉下划线 */
+}
 </style>

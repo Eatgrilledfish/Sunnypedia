@@ -12,15 +12,27 @@
     <div class="subheading" v-if="item.heading2">
       <h3>{{ item.heading2 }}</h3>
     </div>
-    <p2>{{ item.text2 }}</p2>
+    <p2 v-if="index === 0">
+      {{ item.text2.split('warmest')[0] }}
+      <a href="https://earthobservatory.nasa.gov/world-of-change/global-temperatures">warmest</a>
+      {{ item.text2.split('warmest')[1] }}
+    </p2>
+    <p2 v-else-if="index === 1">
+      {{ item.text2.split('Antartica')[0] }}
+      <a href="https://www.dcceew.gov.au/environment/protection/ozone/ozone-science/ozone-layer">Antartica</a>
+      {{ item.text2.split('Antartica')[1] }}
+    </p2>
+    <p2 v-else>
+      {{ item.text2 }}
+    </p2>
   </div>
     <div class="wrap-column">
       <div class="echart-container" ref="echartDom"></div>
       <div class="chart-description">
         <h2>{{ chartDescription.heading }}</h2>
-        <p1>{{ chartDescription.text }}</p1>
+        <p1>{{  chartDescription.text.split('uncontrollably')[0] }}<a href="https://www.aihw.gov.au/reports/cancer/cancer-data-in-australia/contents/overview-of-cancer-in-australia-2023">uncontrollably</a>{{  chartDescription.text.split('uncontrollably')[1] }}</p1>
         <h3>{{ chartDescription.heading2 }}</h3>
-        <p2>{{ chartDescription.text2 }}</p2>
+        <p2>{{  chartDescription.text2.split('ASR')[0] }}<a href="https://www.cancercouncil.com.au/cancer-prevention/sun-protection/understanding-uv-radiation/how-uv-radiation-increases-skin-cancer-risk/">ASR</a>{{  chartDescription.text2.split('ASR')[1] }}</p2>
       </div>
   </div>
 </div>
@@ -58,7 +70,7 @@ export default {
         heading: "FINALLY, THERE'S DISEASE",
         heading2: "Did you know?",
         text: "UV damages your DNA, if your body cannot repair it, the cells grows uncontrollably and form a tumor.",
-        text2: "In 2023, the ozone layer opened up aobce Antartica spanning 3 times the size of Australia."
+        text2: "The Australian (ASR) rates of meanoma of skin (cancer) increased by 2020-22."
       }
     }
   },
