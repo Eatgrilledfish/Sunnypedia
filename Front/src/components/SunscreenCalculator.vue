@@ -17,7 +17,7 @@
 
     <div style="display: flex; align-items: flex-start;">
       <!-- 图片部分 -->
-      <div  style="margin-left: 500px;"> <!-- 根据需要调整右边距 -->
+      <div style="margin-left: 500px;"> <!-- 根据需要调整右边距 -->
         <img :src="outlineImageUrl" alt="Outline Image" style="width: auto; max-width: 200px; max-height: 100%;">
       </div>
 
