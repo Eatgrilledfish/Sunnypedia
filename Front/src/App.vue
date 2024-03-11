@@ -2,7 +2,7 @@
   <el-container>
     <el-header>
       <!-- 导航栏 -->
-      <a href = "http://localhost:5173/">
+      <a herf = "http://localhost:5173/">
         <img src="./assets/logo.png" alt="logo" style="width: 180px; height: auto;" />
       </a>
       <el-menu
@@ -27,7 +27,7 @@ import femaleImage from '@/assets/female.png';
 export default {
   data() {
     return {
-      activeIndex:'1',
+      activeIndex: this.getActiveIndexByRoute(), // 动态设置activeIndex
       // 添加走马灯的数据
       items: [
         { id: 1, imageSrc: femaleImage, text_name: 'TESTOMONIALS' , text_content : "Discovering this website revolutionized my skincare routine. From UV index insights to personalized sunscreen calculations, it's become my go-to for staying protected and informed. Highly recommend!"},
@@ -42,7 +42,31 @@ export default {
     goToPage(path) {
     this.$router.push(path);
     },
+    getActiveIndexByRoute() {
+      // 根据当前路由路径设置activeIndex
+      const routePath = this.$route.path;
+      switch(routePath) {
+        case '/':
+          return '1';
+        case '/uva-aware':
+          return '2';
+        case '/clothing':
+          return '3';
+        case '/uv-map':
+          return '4';
+        case '/sunscreen-calculator':
+          return '5';
+        default:
+          return '1'; // 默认或未匹配路径返回首页索引
+      }
+    },
   },
+  watch: {
+    // 监听$route变化来更新activeIndex，确保导航状态与路由同步
+    '$route'(to, from) {
+      this.activeIndex = this.getActiveIndexByRoute();
+    }
+  }
 };
 
 </script>
@@ -62,9 +86,15 @@ export default {
 }
 
 
+
+.el-menu--horizontal > .el-menu-item.is-active {
+  border-bottom: none !important;
+}
+
 .el-menu-item {
   font-size: 18px; 
   padding-right: 80px;
+  transition: none !important;
 }
 
 .pediabg {
