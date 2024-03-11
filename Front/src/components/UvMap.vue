@@ -69,7 +69,7 @@ export default {
     // 从后端获取数据
     const fetchWeatherData = async () => {
       try {
-        const response = await fetch('http://13.237.185.73:8000/data/weather', {
+        const response = await fetch('http://13.237.185.73:8000/api/data/weather', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
