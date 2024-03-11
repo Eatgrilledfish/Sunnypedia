@@ -27,11 +27,6 @@ This repository contains the Sunnypedia Flask application, which is a web applic
 FrontEnd page: https://aokodaisuki.com/
 
 Database: Mysql
-ip:13.237.185.73
-port:3306
-user: remote_user
-password: Sunnypediag13!
-
 
 #### API
 **Surbubs**
