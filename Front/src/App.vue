@@ -2,7 +2,7 @@
   <el-container>
     <el-header>
       <!-- 导航栏 -->
-      <a href = "http://localhost:5173/">
+      <a href = "https://aokodaisuki.com/">
         <img src="./assets/logo.png" alt="logo" style="width: 180px; height: auto;" />
       </a>
       <el-menu
