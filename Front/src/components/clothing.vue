@@ -1,171 +1,137 @@
-<script setup>
-</script>
-
 <template>
-<div class="UVAware">
-  <div class="column" v-for="(item, index) in items" :key="index">
-    <div class="content-wrapper">
-      <img :src="item.image" :alt="`Image ${index + 1}`" class="image">
-      <h2>{{ item.heading1 }}</h2>
-      <p>{{ item.text1 }}</p>
-    </div>
-    <div class="subheading" v-if="item.heading2">
-      <h3>{{ item.heading2 }}</h3>
-    </div>
-    <p>{{ item.text2 }}</p>
-  </div>
-    <div class="wrap-column">
-      <div class="echart-container" ref="echartDom"></div>
-      <div class="chart-description">
-        <h2>{{ chartDescription.heading }}</h2>
-        <p>{{ chartDescription.text }}</p>
-        <h3>{{ chartDescription.heading2 }}</h3>
-        <p>{{ chartDescription.text2 }}</p>
+  <div class="container">
+    <!-- 居中的标题 -->
+    <h1 class="heading">IF YOU CAN SEE SKIN, SO CAN UV</h1>
+    <!-- 下面的一行文本 -->
+    <p class="text">UPF (Ultraviolet Protection Factor) measures the amount of UV radiation a fabric permits to reach your skin. UPF 50 blocks 98% of the sun's rays, significantly reducing your exposure risk.</p>
+    <!-- 正下方居中的图片 -->
+    <div class="image-and-text">
+      <div class="left-content">
+        <img class="side-image-left" :src="UPF7" alt="Low Protection">
+        <h2 class="heading2-left">WHITE T-SHIRT</h2>
+        <h3 class="subheading-left">LOW PROTECTION</h3>
+        <ul class="dot-points-left">
+          <li>Exposed skin</li>
+          <li>Light colours</li>
+          <li>Worn clothing</li>
+          <li>Synthetic material</li>
+          <li>Wet or too tight</li>
+          <li>No Accessories</li>
+        </ul>
       </div>
+      <img class="centered-image" :src="clothingImage" alt="Clothing">
+      <div class="right-content">
+        <img class="side-image-right" :src="UPF1700" alt="High Protection">
+        <h2 class="heading2-right">DARK DENIM SHIRT</h2>
+        <h3 class="subheading-right">HIGH PROTECTION</h3>
+        <ul class="dot-points-right">
+          <li>Fully covered</li>
+          <li>Dark colours</li>
+          <li>Good condition</li>
+          <li>Natural fibres like cotton</li>
+          <li>Dry and fitting</li>
+          <li>Hat and sunglasses</li>
+        </ul>
+      </div>
+    </div>
   </div>
-</div>
-
 </template>
 
+
 <script>
-import * as echarts from 'echarts';
-import TemperatureAnomaly from '@/assets/Temperature Anomaly.png';
-import OzoneHole from '@/assets/The ozone hole.png';
+// 引入图片资源
+import clothingImage from '@/assets/clothing.jpg';
+import UPF7 from '@/assets/UPF7.png';
+import UPF1700 from '@/assets/UPF1700.png';
+
 export default {
-  name: 'ThreeColumns',
   data() {
     return {
-      // 你原始的数据
-      items: [
-        {
-          image: TemperatureAnomaly,
-          heading1: "FIRST,THERE'S HEAT",
-          text1: 'Global warming is a comparative measure with the pre-industrial (1850-1900s) average Earth temperatures as baseline.',
-          heading2: 'Did you know?',
-          text2: 'The Earth gets a little warmer everyday. The past 9 years have been the warmest since 1800s.'
-        },
-        {
-          image: OzoneHole,
-          heading1: "THEN, THERE'RE HOLES",
-          text1: 'Stratospheric ozone that forms a layer above Earth absorbs UV-B and protects all life on Earth.',
-          heading2: 'Did you know?',
-          text2: 'In 2023, the ozone layer opened up aobce Antartica spanning 3 times the size of Australia.'
-        }
-      ],
-      // 添加一个用于图表的引用对象
-      echartRef: null,
-      chartDescription: {
-        heading: "FINALLY, THERE'S DISEASE",
-        heading2: "Did you know?",
-        text: "UV damages your DNA, if your body cannot repair it, the cells grows uncontrollably and form a tumor.",
-        text2: "In 2023, the ozone layer opened up aobce Antartica spanning 3 times the size of Australia."
-      }
-    }
+      clothingImage,
+      UPF7, 
+      UPF1700, 
+    };
   },
-  mounted() {
-    // 初始化图表
-    this.fetchDataAndInitChart();
-  },
-  methods: {
-    fetchDataAndInitChart() {
-      fetch('http://127.0.0.1:5000/data/graph')
-        .then(response => response.json())
-        .then(data => {
-          // 假设返回的数据是data对象中的一部分，根据你的实际数据结构调整
-          console.log(data)
-          this.initChart(data);
-        })
-        .catch(error => console.error('Error fetching data:', error));
-    },
-    initChart(data) {
-      this.echartRef = echarts.init(this.$refs.echartDom);
-      const option = {
-        // 更新ECharts配置项以匹配新的图表样式
-        title: {
-          text: "Trend rate (per 100k unit of pop) of mortality/incidences of skin ",
-          textStyle: { fontSize: 14  }
-        },
-        legend: {
-          data:['Mortality Rates','Incidence Rates'],
-          top: 'bottom',
-          textStyle: {color: '#000'}
-        },
-        xAxis: {
-          type: 'category',
-          data: data.years
-        },
-        yAxis: {
-          type: 'value'
-        },
-        series: [
-        {
-          name: 'Mortality Rates',
-          data: data.mortality_rates_per_100000,
-          type: 'line',
-          smooth: true // 这确保了线条平滑
-        },
-        {
-          name: 'Incidence Rates',
-          data: data.incidence_rates_per_100000,
-          type: 'line',
-          smooth: true // 这确保了线条平滑
-        }
-      ]
-      };
-      this.echartRef.setOption(option);
-    }
-  }
-}
+};
 </script>
 
-<style>
-.UVAware {
+<style scoped>
+.container {
   display: flex;
-  justify-content: space-around;
-  align-items: flex-start;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.heading {
   
 }
 
-.column {
-  flex: 1;
-  margin: 10px;
-  text-align: left;
-  align-items: flex-start;
+.text {
+  margin: 0 100px; /* 简化了左右外边距的设置 */
 }
-.content-wrapper, .subheading {
-  width: 100%; /* 确保包裹元素占满列的宽度 */
+.side-image-left {
+  max-width: 80px; /* 根据需要调整图片大小 */
+  height: auto;
+  margin-left: 200px; /* 设置图片和标题之间的间距 */
+  float: left; /* 使图片浮动，标题和副标题紧随其后 */
 }
-.column h2 {
-  text-align: center;
-}
-.image {
-  max-width: 500px;
-  height: 330px; /* 或你希望的固定高度 */
-
-}
-.column h3 {
-  align-items: flex-start;
-}
-h2, h3 {
-  margin: 10px 0;
+.side-image-right {
+  max-width: 80px; /* 根据需要调整图片大小 */
+  height: auto;
+  float: left; /* 使图片浮动，标题和副标题紧随其后 */
 }
 
-.chart-description h2 {
-  text-align: center;
-  /* 更多样式 */
-}
-
-.wrap-column {
+.image-and-text {
   display: flex;
-  flex-direction: column;
-  align-items: center; /* 这会使图表和文本居中对齐 */
-  margin: 20px;
-  text-align: left;
+  align-items: center;
+  justify-content: space-around; /* 根据需要调整 */
+  width: 100%;
+  margin-top: 40px;
 }
 
-.echart-container {
-  width: 500px;
-  height:330px;
-
+.centered-image {
+  max-width: 100%; /* 确保图片不会超过其容器的宽度 */
+  height: auto; /* 保持图片的原始宽高比 */
+  margin-top: 40px;
+  margin-left: 60px;
 }
+
+.left-content, .right-content {
+  flex: 1;
+}
+.heading2-left {
+  margin-left: 200px;
+  margin-bottom: 40px;
+}
+
+.heading2-right{
+  margin-bottom: 40px;
+  margin-right: 150px;
+  
+}
+
+.subheading-left {
+  padding-left: 200px;
+  margin-bottom: 30px;
+}
+
+.subheading-right {
+  margin-bottom: 30px;
+  margin-right: 200px;
+}
+
+.dot-points-left {
+  text-align: left; /* 确保点状列表左对齐 */
+  margin-left: 280px;
+}
+
+.dot-points-right {
+  text-align: left; /* 确保点状列表左对齐 */
+  margin-left: 80px;
+  
+}
+
+
 </style>

@@ -23,24 +23,24 @@
 
       <div style="flex-grow: 1; margin-left: 100px;">
         <form @submit.prevent="submitForm">
-          <div style="margin-bottom: 25px;margin-top: 50px;">
+          <div style="margin-bottom: 25px;margin-top: 10px;">
             <label for="gender">Gender:</label>
               <select v-model="gender">
                 <option value="male">Male</option>
                 <option value="female">Female</option>
               </select>
           </div>
-          <div style="margin-bottom: 25px;">
+          <div style="margin-bottom: 20px;">
             <label for="height">Height (cm):</label>
             <input type="number" v-model.number="height" />
           </div>
-          <div style="margin-bottom: 25px;">
+          <div style="margin-bottom: 20px;">
             <label for="weight">Weight (kg):</label>
             <input type="number" v-model.number="weight" />
           </div>
 
           <!-- 衣物选择 -->
-          <div style="margin-bottom: 25px;">
+          <div style="margin-bottom: 20px;">
             <label for="head">Headwear:</label>
             <select v-model="head">
               <option value="">None</option>
@@ -48,7 +48,7 @@
               <!-- 添加更多头饰选项 -->
             </select>
           </div>
-          <div style="margin-bottom: 25px;">
+          <div style="margin-bottom: 20px;">
             <label for="top">Topwear:</label>
             <select v-model="top">
               <option value="">None</option>
@@ -60,7 +60,7 @@
               <!-- 添加更多上衣选项 -->
             </select>
           </div>
-          <div style="margin-bottom: 25px;">
+          <div style="margin-bottom: 20px;">
             <label for="bottom">Bottomwear:</label>
             <select v-model="bottom">
               <option value="">None</option>
@@ -75,7 +75,7 @@
               <!-- 添加更多下身衣物选项 -->
             </select>
           </div>
-          <div style="margin-bottom: 25px;">
+          <div style="margin-bottom: 20px;">
             <label for="shoes">Shoes:</label>
             <select v-model="shoes">
               <option value="">None</option>
