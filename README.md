@@ -24,7 +24,7 @@ This repository contains the Sunnypedia Flask application, which is a web applic
 
 BacknEnd Api: [13.237.185.73:8000](http://13.237.185.73:8000/)
 
-FrontEnd page: http://13.237.185.73:80/
+FrontEnd page: https://aokodaisuki.com/
 
 Database: Mysql
 ip:13.237.185.73
@@ -33,6 +33,35 @@ user: remote_user
 password: Sunnypediag13!
 
 
+#### API
+**Surbubs**
+https://api.aokodaisuki.com/api/suburbs
+**Graph data**
+https://api.aokodaisuki.com/api/graph
+
+**Sunscreen calculator**
+curl -X 'POST' \
+  'https://api.aokodaisuki.com/api/sunscreen' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "gender": "male",
+  "height": 0,
+  "weight": 0,
+  "head": "string",
+  "top": "string",
+  "bottom": "string",
+  "shoes": "string"
+}'
+
+**Uv Index Weather**
+curl -X 'POST' \
+  'https://api.aokodaisuki.com/api/weather' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "suburb": "string"
+}'
 
 
 
