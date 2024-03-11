@@ -113,6 +113,34 @@ class Suburbs(Resource):
             api.abort(500, str(e))
 
 
+        
+@ns.route('/graph')
+class Suburbs(Resource):
+    def get(self):
+        """Return a list of all suburbs from the database"""
+        try:
+            conn = mysql.connector.connect(**db_config)
+            cursor = conn.cursor()
+            cursor.execute("SELECT Year, mortality_rate_per_100000, incidence_rate_per_100000 FROM mortality_and_incidence")
+            rows = cursor.fetchall()
+            cursor.close()
+            conn.close()
+            years = []
+            mortality_rates = []
+            incidence_rates = []
+            for row in rows:
+                years.append(row[0])
+                mortality_rates.append(row[1])
+                incidence_rates.append(row[2])
+            data = {
+                "years": years,
+                "mortality_rates_per_100000": mortality_rates,
+                "incidence_rates_per_100000": incidence_rates
+            }
+            return data
+        except Exception as e:
+            api.abort(500, str(e))
+
 
 
 if __name__ == '__main__':
