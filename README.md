@@ -36,8 +36,10 @@ password: Sunnypediag13!
 #### API
 **Surbubs**
 https://api.aokodaisuki.com/api/suburbs
+
 **Graph data**
 https://api.aokodaisuki.com/api/graph
+
 
 **Sunscreen calculator**
 curl -X 'POST' \
