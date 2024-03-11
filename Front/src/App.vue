@@ -65,6 +65,8 @@ export default {
 .el-menu-item {
   font-size: 18px; 
   padding-right: 80px;
+  font-family: "Papyrus"; 
+  font-weight: 700;
 }
 
 .pediabg {

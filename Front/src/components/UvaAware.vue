@@ -7,20 +7,20 @@
     <div class="content-wrapper">
       <img :src="item.image" :alt="`Image ${index + 1}`" class="image">
       <h2>{{ item.heading1 }}</h2>
-      <p>{{ item.text1 }}</p>
+      <p1>{{ item.text1 }}</p1>
     </div>
     <div class="subheading" v-if="item.heading2">
       <h3>{{ item.heading2 }}</h3>
     </div>
-    <p>{{ item.text2 }}</p>
+    <p2>{{ item.text2 }}</p2>
   </div>
     <div class="wrap-column">
       <div class="echart-container" ref="echartDom"></div>
       <div class="chart-description">
         <h2>{{ chartDescription.heading }}</h2>
-        <p>{{ chartDescription.text }}</p>
+        <p1>{{ chartDescription.text }}</p1>
         <h3>{{ chartDescription.heading2 }}</h3>
-        <p>{{ chartDescription.text2 }}</p>
+        <p2>{{ chartDescription.text2 }}</p2>
       </div>
   </div>
 </div>
@@ -131,28 +131,50 @@ export default {
   margin: 10px;
   text-align: left;
   align-items: flex-start;
+  margin-left: 30px;
+ 
 }
-.content-wrapper, .subheading {
+.content-wrapper {
   width: 100%; /* 确保包裹元素占满列的宽度 */
+  
+  font-size: 15px; 
+   
+  font-variant: normal; 
+  font-weight: 400; 
+  line-height: 21.4286px;
 }
+
 .column h2 {
   text-align: center;
+  
+   font-size: 24px; font-style: normal; font-variant: small-caps; font-weight: 700; line-height: 26.4px;color: #c09c84; font-family: Rockwell;
 }
+.column p1{
+  
+  font-family: Rockwell;font-size: 15px; font-style: light; font-style: italic;  font-weight: 500; line-height: 26.4px;
+}
+.column p2{
+  
+  font-family: Rockwell;font-size: 15px; font-style: light; font-weight: 500; line-height: 26.4px;
+}
+
+
 .image {
-  max-width: 500px;
-  height: 330px; /* 或你希望的固定高度 */
+  max-width: 450px;
+  height: 300px; /* 或你希望的固定高度 */
+ 
 
 }
 .column h3 {
   align-items: flex-start;
-}
-h2, h3 {
-  margin: 10px 0;
+   font-size: 20px; font-style: normal; font-weight: 700; line-height: 26.4px;text-decoration: underline;
+  
 }
 
 .chart-description h2 {
   text-align: center;
-  /* 更多样式 */
+  font-size: 24px; font-style: normal; font-variant: small-caps; font-weight: 700; line-height: 26.4px;color: #c09c84; font-family: Rockwell;
+  
 }
 
 .wrap-column {
@@ -162,10 +184,22 @@ h2, h3 {
   margin: 20px;
   text-align: left;
 }
+.wrap-column p1{
+  font-family: Rockwell;font-size: 15px; font-style: light; font-style: italic;  font-weight: 500; line-height: 24px;
+}
 
+.wrap-column p2{
+  font-family: Rockwell;font-size: 15px; font-style: light; font-weight: 500; line-height: 26.4px;
+}
+
+.wrap-column h3{
+  
+   font-size: 20px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 26.4px;text-decoration: underline;
+
+}
 .echart-container {
-  width: 500px;
-  height:330px;
+  width: 450px;
+  height:300px;
 
 }
 </style>

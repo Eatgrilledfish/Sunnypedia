@@ -6,13 +6,13 @@
       <div style="flex: 1; margin-left: 300px;"> <!-- 根据需要调整边距 -->
         <img :src="sunOutlineImageUrl" alt="Description Image" style="width: 100%; max-width: 200px; height: auto;">
       </div>
-      <div style="flex: 3;margin-right: 200px;">
+      <div style="flex: 3;margin-right: 200px; font-family: Rockwell; font-size: 20px;color: #c09c84; /* 设置文本颜色 */ font-style: italic; /* 使文本倾斜 */">
         <p>Worrying if you've been applying enough sunscreen? Sit back and leave the heavy math to us.</p>
         <p>SunnyPedia's new Sunscreen Calculator highly customised formula can tell you exactly how much YOU need! Give it a spin!</p>
       </div>
     </div>
     
-    <h1 style="margin-left: 330px;">User Profile</h1>
+    <h1 style="margin-left: 330px; color: #c09c84; text-decoration: underline;">User Profile</h1>
 
 
     <div style="display: flex; align-items: flex-start;">

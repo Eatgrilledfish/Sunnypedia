@@ -65,11 +65,16 @@ export default {
 }
 
 .heading {
-  
+  color: #c09c84; /* 设置文本颜色 */
+  font-size: 28px;
+  font-family: Cambria;
 }
 
 .text {
-  margin: 0 100px; /* 简化了左右外边距的设置 */
+  margin: 0 250px; /* 简化了左右外边距的设置 */
+  color: #c09c84; /* 设置文本颜色 */
+  font-style: italic; /* 使文本倾斜 */
+  margin-top: 25px;
 }
 .side-image-left {
   max-width: 80px; /* 根据需要调整图片大小 */
@@ -94,7 +99,7 @@ export default {
 .centered-image {
   max-width: 100%; /* 确保图片不会超过其容器的宽度 */
   height: auto; /* 保持图片的原始宽高比 */
-  margin-top: 40px;
+  margin-top: 0px;
   margin-left: 60px;
 }
 
@@ -104,32 +109,46 @@ export default {
 .heading2-left {
   margin-left: 200px;
   margin-bottom: 40px;
+  font-weight: 500;
+  font-family: Cambria;
 }
 
 .heading2-right{
   margin-bottom: 40px;
   margin-right: 150px;
+  font-weight: 500;
+  font-family: Cambria;
   
 }
 
 .subheading-left {
-  padding-left: 200px;
+  padding-left: 270px;
   margin-bottom: 30px;
+  text-decoration: underline;
+  font-style: italic;
+  font-weight: 800;
 }
 
 .subheading-right {
   margin-bottom: 30px;
-  margin-right: 200px;
+  margin-right: 120px;
+  text-decoration: underline;
+  font-style: italic;
+  font-weight: 800;
 }
 
 .dot-points-left {
   text-align: left; /* 确保点状列表左对齐 */
   margin-left: 280px;
+  color: #ff00ff;
+  font-family: Rockwell;
 }
 
 .dot-points-right {
   text-align: left; /* 确保点状列表左对齐 */
   margin-left: 80px;
+  color: #ff00ff;
+  font-family: Rockwell;
   
 }
 

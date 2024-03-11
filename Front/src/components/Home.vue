@@ -86,6 +86,7 @@ export default {
   align-items: center; /* 垂直居中文本 */
   justify-content: center; /* 水平居中文本 */
   position: relative; /* 为了绝对定位文本覆盖层 */
+  margin-left: 70px;
 }
 
 .text-overlay {
@@ -95,14 +96,24 @@ export default {
   transform: translate(-50%, -50%);
   width: 80%; /* 根据需要调整宽度 */
   color: black;
-  padding-left: 500px;
+  padding-left: 400px;
+  font-family: "Papyrus"; 
+  font-weight: 700;
+  line-height: 40px;
+  font-size: 20px;
+  
 }
 
 
 .overlay-heading {
-  font-size: 24px; /* 标题大小 */
-  margin-bottom: 10px; /* 标题和段落之间的间距 */
-  margin-top: -40px; /* 向上移动标题 */
+  margin-bottom: 40px; /* 标题和段落之间的间距 */
+  margin-top: -20px; /* 向上移动标题 */
+  font-family: "Papyrus"; 
+  font-size: 40px; 
+  font-style: normal; 
+  font-variant: normal; 
+  font-weight: 700; 
+  line-height: 45px;
 }
 
 .carousel-content {
@@ -137,6 +148,8 @@ export default {
   text-align: center; /* 确保文本在其容器中居中 */
   flex: 1 0 40%; /* 根据需要调整宽度和基础设置 */
   padding: 20px; /* 添加一些内边距，根据需要调整 */
+  color: #c09c84; /* 设置文本颜色 */
+  font-style: italic; /* 使文本倾斜 */
 
 }
 
