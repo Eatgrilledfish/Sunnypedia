@@ -80,7 +80,7 @@ export default {
   },
   methods: {
     fetchDataAndInitChart() {
-      fetch('http://127.0.0.1:5000/data/graph')
+      fetch('http://13.237.185.73/api/data/graph')
         .then(response => response.json())
         .then(data => {
           // 假设返回的数据是data对象中的一部分，根据你的实际数据结构调整

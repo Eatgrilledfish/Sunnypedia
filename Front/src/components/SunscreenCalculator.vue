@@ -133,7 +133,7 @@ export default {
       };
 
       // 直接发送到后端，使用axios
-      axios.post('http://13.237.185.73:8000/api/data/sunscreen', userProfile)
+      axios.post('http://13.237.185.73/api/data/sunscreen', userProfile)
         .then(response => {
           // 这里处理后端返回的响应
           console.log(response.data);
