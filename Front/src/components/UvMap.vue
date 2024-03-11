@@ -45,7 +45,7 @@ export default {
         suburbs.value = JSON.parse(cachedSuburbs);
       } else {
         try {
-          const response = await fetch('http://13.237.185.73:8000/data/suburbs');
+          const response = await fetch('https://aokodaisuki.com/api/suburbs');
           if (response.ok) {
             const data = await response.json();
             suburbs.value = data;
@@ -69,7 +69,7 @@ export default {
     // 从后端获取数据
     const fetchWeatherData = async () => {
       try {
-        const response = await fetch('http://13.237.185.73:8000/data/weather', {
+        const response = await fetch('https://aokodaisuki.com/api/weather', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

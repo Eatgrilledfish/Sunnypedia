@@ -42,25 +42,6 @@ weather_model = api.model('WeatherData', {
     'suburb': fields.String(required=True, description='Suburb name for weather data fetching'),
 })
 
-# 定义一个资源
-# @ns.route('/')
-# class DataList(Resource):
-#     def get(self):
-#         """List all data"""
-#         ref = db.reference('some/path')  # 指定数据库中的路径
-#         data = ref.get()
-#         return data
-
-#     @api.expect(api.model('DataModel', {
-#         'name': fields.String(required=True, description='The name'),
-#         'age': fields.Integer(required=True, description='The age')
-#     }))
-#     def post(self):
-#         """Create a new data entry"""
-#         ref = db.reference('some/path')  # 指定数据库中的路径
-#         ref.push(api.payload)
-#         return {'message': 'Data added successfully.'}, 201
-
 @ns.route('/sunscreen')
 class SunscreenCalculation(Resource):
     @api.expect(sunscreen_model)
