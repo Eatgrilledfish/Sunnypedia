@@ -78,7 +78,7 @@ export default {
     const fetchWeatherData = async () => {
       myChart.value.showLoading();
       try {
-        const response = await fetch('http://127.0.0.1:5000/data/weather', {
+        const response = await fetch('https://aokodaisuki.com/api/weather', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
