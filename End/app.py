@@ -70,7 +70,7 @@ class WeatherData(Resource):
         # 提取请求中的数据
         data = api.payload
         suburb = data['suburb']
-        appid = 'c7f5a3b4b7b713345d680d03698ec31f'
+        appid = '55692ade591c39c9d006377c0702e77f'
         # Fetch and process weather data
         lat, lon = fetch_coordinates(suburb)
         data,current_dt = fetch_weather_data(suburb, lat,lon, appid)
