@@ -14,7 +14,7 @@
         <el-menu-item index="1" @click="goToPage('/')">Home</el-menu-item>
         <el-menu-item index="2" @click="goToPage('/uva-aware')">UV Aware</el-menu-item>
         <el-menu-item index="3" @click="goToPage('/clothing')">Clothing</el-menu-item>
-        <el-menu-item index="4" @click="goToPage('/uv-map')">UV Map</el-menu-item>
+        <el-menu-item index="4" @click="goToPage('/uv-map')">UV forecast</el-menu-item>
         <el-menu-item index="5" @click="goToPage('/sunscreen-calculator')">Sunscreen Calculator</el-menu-item>
       </el-menu>
     </el-header>

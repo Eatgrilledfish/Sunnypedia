@@ -3,7 +3,7 @@
   <div style="flex-grow: 1;">
     <div style="display: flex; align-items: center; margin-bottom: 20px;">
       <!-- 调整了内部布局的边距 -->
-      <div style="flex: 1; margin-left: 300px;"> <!-- 根据需要调整边距 -->
+      <div style="flex: 1; margin-left: 300px;"> 
         <img :src="sunOutlineImageUrl" alt="Description Image" style="width: 100%; max-width: 200px; height: auto;">
       </div>
       <div style="flex: 3;margin-right: 200px; font-family: Rockwell; font-size: 20px;color: #c09c84; /* 设置文本颜色 */ font-style: italic; /* 使文本倾斜 */">
@@ -17,7 +17,7 @@
 
     <div style="display: flex; align-items: flex-start;">
       <!-- 图片部分 -->
-      <div style="margin-left: 500px;"> <!-- 根据需要调整右边距 -->
+      <div style="margin-left: 500px;"> 
         <img :src="outlineImageUrl" alt="Outline Image" style="width: auto; max-width: 200px; max-height: 100%;">
       </div>
 
@@ -32,20 +32,18 @@
           </div>
           <div style="margin-bottom: 20px;">
             <label for="height">Height (cm):</label>
-            <input type="number" v-model.number="height" />
+            <input type="number" v-model.number="height" step="0.01"/>
           </div>
           <div style="margin-bottom: 20px;">
             <label for="weight">Weight (kg):</label>
-            <input type="number" v-model.number="weight" />
+            <input type="number" v-model.number="weight" step="0.01" />
           </div>
-
           <!-- 衣物选择 -->
           <div style="margin-bottom: 20px;">
             <label for="head">Headwear:</label>
             <select v-model="head">
               <option value="">None</option>
-              <option value="hat">Hat</option>
-              <!-- 添加更多头饰选项 -->
+              <option value="hat">Hat</option>      
             </select>
           </div>
           <div style="margin-bottom: 20px;">
@@ -57,7 +55,6 @@
               <option value="vest">vest</option>
               <option v-if="gender === 'female'" value="full_body_swimsuit">full-body swimsuit</option>
               <option v-if="gender === 'female'" value="swimsuit">swimsuit</option>
-              <!-- 添加更多上衣选项 -->
             </select>
           </div>
           <div style="margin-bottom: 20px;">
@@ -72,7 +69,6 @@
               <option v-if="gender === 'female'" value="short_skirt">short skirt</option>
               <option v-if="gender === 'male'" value="skateboard_shorts">skateboard shorts</option>
               <option v-if="gender === 'male'" value="swimming_trunks">swimming trunks</option>
-              <!-- 添加更多下身衣物选项 -->
             </select>
           </div>
           <div style="margin-bottom: 20px;">
@@ -81,7 +77,6 @@
               <option value="">None</option>
               <option value="shoes">Shoes</option>
               <option value="flip_flops">Flip-flops</option>
-              <!-- 添加更多鞋子选项 -->
             </select>
           </div>
 
@@ -122,6 +117,10 @@ export default {
   },
   methods: {
     submitForm() {
+      if (this.height <= 0 || this.weight <= 0) {
+        alert("Please enter valid values for Height and Weight.");
+        return; 
+      }
       const userProfile = {
         gender: this.gender,
         height: this.height,
@@ -138,7 +137,6 @@ export default {
           // 这里处理后端返回的响应
           console.log(response.data);
           this.calculationResult = `You need to apply approximately ${response.data.teaspoons} teaspoons (${response.data.milliliters}ml) of sunscreen every 2 hours when outside.\n\nNo sunscreen provides 100% protection so always use with a broad brimmed hat, sunglasses, covering clothing, and shade.`;
-          alert("Sunscreen calculation result: " + JSON.stringify(response.data));
         })
         .catch(error => {
           // 处理错误
@@ -158,6 +156,6 @@ export default {
   border: 1px solid #ccc;
   border-radius: 8px;
   background-color: #f9f9f9;
-  max-width: 350px; /* Adjust as needed */
+  max-width: 350px; 
 }
 </style>

@@ -2,7 +2,7 @@ from flask import Flask,request
 from flask_restx import Api, Resource,fields
 from flask_cors import CORS
 from calculate_sunscreen import calculate_sunscreen_amount
-from UvindexApi import process_weather_data, fetch_weather_data
+from UvindexApi import process_weather_data, fetch_weather_data, fetch_coordinates
 import mysql.connector
 
 
@@ -42,6 +42,7 @@ weather_model = api.model('WeatherData', {
     'suburb': fields.String(required=True, description='Suburb name for weather data fetching'),
 })
 
+
 @ns.route('/sunscreen')
 class SunscreenCalculation(Resource):
     @api.expect(sunscreen_model)
@@ -71,9 +72,10 @@ class WeatherData(Resource):
         suburb = data['suburb']
         appid = 'c7f5a3b4b7b713345d680d03698ec31f'
         # Fetch and process weather data
-        data = fetch_weather_data(suburb, appid)
+        lat, lon = fetch_coordinates(suburb)
+        data,current_dt = fetch_weather_data(suburb, lat,lon, appid)
         if data:
-            processed_data = process_weather_data(data)
+            processed_data = process_weather_data(data,current_dt = current_dt,lat=lat,lon=lon, appid=appid)
             return processed_data
         else:
             return "Failed to fetch weather data"

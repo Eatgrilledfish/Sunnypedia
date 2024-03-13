@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div >
     <div class="filter-box">
       <!-- 假设这里有一个下拉框供用户选择地区 -->
       <el-select v-model="selectedSuburb"  filterable placeholder="Please enter or select suburb" @change="fetchWeatherData">
@@ -14,7 +14,7 @@
         <el-button @click="toggleDay">Switch to {{ isToday ? 'Tomorrow' : 'Today' }}</el-button>
       </div>
     </div>
-    <div ref="chartContainer" class="uv-chart-container"></div>
+    <div ref="chartContainer" class="uv-chart-container" ></div>
     <div v-if="alerts.length" class="alerts">
       <div v-for="alert in alerts" :key="alert.event" class="alert">
         <h3>{{ alert.event }}</h3>
@@ -26,6 +26,7 @@
 
 <script>
 import * as echarts from 'echarts';
+import { formatter } from 'element-plus';
 import { ref, onMounted } from 'vue';
 
 export default {
@@ -36,10 +37,14 @@ export default {
     const suburbs = ref([]); // 动态加载地图
     const isToday = ref(true); // 今天还是明天的标志
     const uvData = ref([]); // 存储UV数据
+    const todayData = ref([]);
+    const myChart = ref(null);
+    // const loading = ref(false); 
 
     // Fetch suburbs from the backend
     const fetchSuburbs = async () => {
       // 先从本地存储中尝试获取地区列表
+      // loading.value = true;
       const cachedSuburbs = localStorage.getItem('suburbs');
       if (cachedSuburbs) {
         suburbs.value = JSON.parse(cachedSuburbs);
@@ -51,8 +56,11 @@ export default {
             suburbs.value = data;
             // 将地区列表保存到本地存储
             localStorage.setItem('suburbs', JSON.stringify(data));
+            
+            // loading.value = false;
           } else {
             console.error('Failed to fetch suburbs');
+            // loading.value = false;
           }
         } catch (error) {
           console.error('Error fetching suburbs:', error);
@@ -65,9 +73,10 @@ export default {
       isToday.value = !isToday.value;
       fetchWeatherData();
     };
-
+    
     // 从后端获取数据
     const fetchWeatherData = async () => {
+      myChart.value.showLoading();
       try {
         const response = await fetch('https://aokodaisuki.com/api/weather', {
           method: 'POST',
@@ -79,24 +88,30 @@ export default {
         });
         if (response.ok) {
           const data = await response.json();
+          todayData.value = { time: data.current_uvi[0].time, uvi: data.current_uvi[0].uvi };
+          // console.log('this is today data',todayData)
           // 根据isToday更新数据，展示今天或明天的UV指数
           uvData.value = isToday.value ? data.today_hourly_uvi.map(item => [item.time, item.uvi]) : data.tomorrow_hourly_uvi.map(item => [item.time, item.uvi]);
           alerts.value = data.current_alerts;
+
           // console.log("UV Data:", uvData.value); // 打印原始数据
           // const mappedData = uvData.value.map(item => [item[0], item[1]]);
           // console.log("Mapped UV Data:", mappedData); // 打印映射后的数据
           updateChart();
+          myChart.value.hideLoading();
         } else {
           console.error('Failed to fetch weather data');
+          myChart.value.hideLoading();
         }
       } catch (error) {
         console.error('Error fetching weather data:', error);
+        myChart.value.hideLoading();
       }
     };
 
     // 更新图表
     const updateChart = () => {
-      const myChart = echarts.init(chartContainer.value);
+  
 
       const option = {
         tooltip: {
@@ -138,15 +153,48 @@ export default {
           },
           itemStyle: {
               color: '#FF4500'
+          },
+          // markPoint: {
+          //   data: [
+          //     {
+          //       name: 'Current UVI',
+          //       coord: [todayData.value.time, todayData.value.uvi],
+          //       itemStyle: {
+          //         color: '#FFD700'
+          //       }
+          //     }
+          //   ],
+          //   label: {
+          //     show: true,
+          //     formatter: () => `Curreent Time ${todayData.value.time}, UVI ${todayData.value.uvi}`, // 显示坐标的值
+          //     position: 'top'
+          //   }
+          // }
+          markLine: {
+            silent: true,
+            data: [{
+              xAxis: todayData.value.time,
+              label: {
+                show : true,
+                formatter: `Curreent Time: ${todayData.value.time}, UVI: ${todayData.value.uvi}`,
+                position: 'end'
+              }
+            }],
+            lineStyle: {
+              color: '#CAB729', 
+              type: 'solid' 
+            },
+            symbol: ['none', 'none']
           }
         }]
       };
-
-      myChart.setOption(option);
+      myChart.value.setOption(option);
     };
 
     onMounted(() => {
       fetchSuburbs(); // 获取地区列表
+      
+      myChart.value = echarts.init(chartContainer.value);
       fetchWeatherData(); // 加载组件时立即加载天气数据
     });
 
@@ -157,7 +205,8 @@ export default {
       suburbs,
       fetchWeatherData,
       toggleDay,
-      isToday
+      isToday,
+
     };
   }
 };

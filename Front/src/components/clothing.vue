@@ -154,6 +154,6 @@ export default {
 
 .fancy-link {
   color: #c09c84; /* 链接的颜色 */
-  text-decoration: none; /* 去掉下划线 */
+  /* text-decoration: none; 去掉下划线 */
 }
 </style>
