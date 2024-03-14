@@ -1,7 +1,7 @@
 <template>
   <div >
     <div class="filter-box">
-      <!-- 假设这里有一个下拉框供用户选择地区 -->
+      <!-- area selection -->
       <el-select v-model="selectedSuburb"  filterable placeholder="Please enter or select suburb" @change="fetchWeatherData">
         <el-option
           v-for="suburb in suburbs"

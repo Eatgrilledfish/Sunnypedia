@@ -1,7 +1,7 @@
 <template>
   <el-container>
     <el-header>
-      <!-- 导航栏 -->
+      <!-- navagation -->
       <a href = "https://aokodaisuki.com/">
         <img src="./assets/logo.png" alt="logo" style="width: 180px; height: auto;" />
       </a>
@@ -23,16 +23,10 @@
 </template>
 
 <script>
-import femaleImage from '@/assets/female.png';
 export default {
   data() {
     return {
-      activeIndex: this.getActiveIndexByRoute(), // 动态设置activeIndex
-      // 添加走马灯的数据
-      items: [
-        { id: 1, imageSrc: femaleImage, text_name: 'TESTOMONIALS' , text_content : "Discovering this website revolutionized my skincare routine. From UV index insights to personalized sunscreen calculations, it's become my go-to for staying protected and informed. Highly recommend!"},
-        { id: 2, imageSrc: femaleImage, text_name: '第二张图片的描述' ,text_content : 'sssss'},
-      ]
+      activeIndex: this.getActiveIndexByRoute(), // Dynamic set activeIndex
     };
   },
   methods: {
@@ -43,7 +37,7 @@ export default {
     this.$router.push(path);
     },
     getActiveIndexByRoute() {
-      // 根据当前路由路径设置activeIndex
+      // set activeIndex based on 
       const routePath = this.$route.path;
       switch(routePath) {
         case '/':

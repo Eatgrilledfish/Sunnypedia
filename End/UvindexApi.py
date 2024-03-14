@@ -95,9 +95,9 @@ def process_weather_data(data, timezone_location="Australia/Melbourne", current_
     for hour in data.get('hourly', []):
         hour_dt = datetime.fromtimestamp(hour['dt'], tz=timezone.utc).astimezone(melbourne_tz)
         if hour_dt.date() == today_date:
-            processed_data['today_hourly_uvi'].append({'time': hour_dt.strftime('%Y-%m-%d %H:%M:%S'), 'uvi': hour.get('uvi', '无数据')})
+            processed_data['today_hourly_uvi'].append({'time': hour_dt.strftime('%Y-%m-%d %H:%M:%S'), 'uvi': hour.get('uvi', 'no data')})
         elif hour_dt.date() == tomorrow_date:
-            processed_data['tomorrow_hourly_uvi'].append({'time': hour_dt.strftime('%Y-%m-%d %H:%M:%S'), 'uvi': hour.get('uvi', '无数据')})
+            processed_data['tomorrow_hourly_uvi'].append({'time': hour_dt.strftime('%Y-%m-%d %H:%M:%S'), 'uvi': hour.get('uvi', 'no data')})
 
     for alert in data.get('alerts', []):
         processed_data['current_alerts'].append({
