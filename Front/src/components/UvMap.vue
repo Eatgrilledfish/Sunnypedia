@@ -11,7 +11,7 @@
         </el-option>
       </el-select>
       <div class="choose-button">
-        <el-button @click="toggleDay">Switch to {{ isToday ? 'Tomorrow' : 'Today' }}</el-button>
+        <el-button v-if="selectedSuburb" @click="toggleDay">Switch to {{ isToday ? 'Tomorrow' : 'Today' }}</el-button>
       </div>
     </div>
     <div ref="chartContainer" class="uv-chart-container" ></div>
