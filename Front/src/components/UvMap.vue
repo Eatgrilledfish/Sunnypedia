@@ -22,12 +22,16 @@
       </div>
     </div>
   </div>
+  <div class="button-container">
+      <button class="clothing-button" @click="goToClothingPage">What to wear?</button>
+    </div>
 </template>
 
 <script>
 import * as echarts from 'echarts';
 import { formatter } from 'element-plus';
 import { ref, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
 
 export default {
   setup() {
@@ -40,6 +44,10 @@ export default {
     const todayData = ref([]);
     const myChart = ref(null);
     // const loading = ref(false); 
+    const router = useRouter();
+    const goToClothingPage = () => {
+      router.push('/clothing');
+    };
 
     // Fetch suburbs from the backend
     const fetchSuburbs = async () => {
@@ -206,6 +214,8 @@ export default {
       fetchWeatherData,
       toggleDay,
       isToday,
+      router,
+      goToClothingPage
 
     };
   }
@@ -233,5 +243,22 @@ export default {
 }
 .choose-button {
   margin-left: 50px;
+}
+.clothing-button {
+  padding: 10px 20px;
+  background-color: #003366; /* 示例蓝色背景 */
+  color: #c09c84; /* 文本颜色为白色 */
+  border: none;
+  border-radius: 4px; /* 轻微的圆角 */
+  cursor: pointer;
+   /* 根据需要调整字体大小 */
+  font-weight: 800; /* 字体加粗 */
+  font-style: italic;
+  display: inline-block; /* 确保按钮正确显示 */
+  transition: background-color 0.3s ease; /* 平滑过渡效果 */
+}
+
+.clothing-button:hover {
+  background-color: #002244; /* 鼠标悬停时的背景颜色变深 */
 }
 </style>
