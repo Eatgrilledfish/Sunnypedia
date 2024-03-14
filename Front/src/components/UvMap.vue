@@ -21,36 +21,16 @@
         <p>{{ alert.description }}</p>
       </div>
     </div>
-    
   </div>
-    <div class="button-container">
-      <button class="clothing-button" @click="goToClothingPage">What to wear?</button>
-    </div>
 </template>
 
-<script setup>
-import { useRouter } from 'vue-router';
+<script>
 import * as echarts from 'echarts';
 import { formatter } from 'element-plus';
 import { ref, onMounted } from 'vue';
 
-
-const router = useRouter();
-
-
-// Define the function for navigating to the clothing page
-const goToClothingPage = () => {
-  router.push('/clothing');
-};
-
-// Remaining logic
-onMounted(() => {
-  // Initialize the ECharts instance, fetch data, etc.
-});
-
-
-
-  
+export default {
+  setup() {
     const chartContainer = ref(null);
     const selectedSuburb = ref('');
     const alerts = ref([]);
@@ -86,7 +66,7 @@ onMounted(() => {
           console.error('Error fetching suburbs:', error);
         }
       }
-    
+    };
 
     // 切换当前显示的UV指数数据（今天/明天）
     const toggleDay = () => {
@@ -228,7 +208,8 @@ onMounted(() => {
       isToday,
 
     };
-    }  
+  }
+};
 </script>
 
 <style scoped>
@@ -253,29 +234,4 @@ onMounted(() => {
 .choose-button {
   margin-left: 50px;
 }
-
-.button-container {
-  display: flex;
-  justify-content: center; /* 水平居中按钮 */
-  margin-top: 20px; /* 在按钮与上方内容之间添加一些空间 */
-  align-items: center;
-}
-.clothing-button {
-  padding: 10px 20px;
-  background-color: #003366; /* 示例蓝色背景 */
-  color: #c09c84; /* 文本颜色为白色 */
-  border: none;
-  border-radius: 4px; /* 轻微的圆角 */
-  cursor: pointer;
-   /* 根据需要调整字体大小 */
-  font-weight: 800; /* 字体加粗 */
-  font-style: italic;
-  display: inline-block; /* 确保按钮正确显示 */
-  transition: background-color 0.3s ease; /* 平滑过渡效果 */
-}
-
-.clothing-button:hover {
-  background-color: #002244; /* 鼠标悬停时的背景颜色变深 */
-}
-
 </style>
