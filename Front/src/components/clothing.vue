@@ -20,6 +20,7 @@
         </ul>
       </div>
       <img class="centered-image" :src="clothingImage" alt="Clothing">
+      
       <div class="right-content">
         <img class="side-image-right" :src="UPF1700" alt="High Protection">
         <h2 class="heading2-right">DARK DENIM SHIRT</h2>
@@ -33,6 +34,10 @@
           <li>Hat and sunglasses</li>
         </ul>
       </div>
+      
+    </div>
+    <div class="button-container">
+        <button class="sunscreen-button" @click="goToSunscreenCalculator">How much sunscreen?</button>
     </div>
   </div>
 </template>
@@ -43,8 +48,23 @@
 import clothingImage from '@/assets/clothing.jpg';
 import UPF7 from '@/assets/UPF7.png';
 import UPF1700 from '@/assets/UPF1700.png';
+import { useRouter } from 'vue-router';
 
 export default {
+  setup() {
+    // 现有的setup逻辑...
+
+    const router = useRouter();
+
+    const goToSunscreenCalculator = () => {
+      router.push('/sunscreen-calculator');
+    };
+
+    return {
+      // 返回到模板的数据和方法...
+      goToSunscreenCalculator,
+    };
+  },
   data() {
     return {
       clothingImage,
@@ -155,5 +175,27 @@ export default {
 .fancy-link {
   color: #c09c84; /* 链接的颜色 */
   /* text-decoration: none; 去掉下划线 */
+}
+
+.button-container {
+  display: flex;
+  justify-content: center; /* 水平居中 */
+
+}
+
+.sunscreen-button {
+  padding: 10px 20px;
+  background-color: #003366; /* 深蓝色背景 */
+  color: #c09c84; /* 白色文字 */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-style: italic; /* 斜体文字 */
+  font-weight: bold; /* 加粗 */
+  transition: background-color 0.3s ease;
+}
+
+.sunscreen-button:hover {
+  background-color: #002244; /* 鼠标悬停时深一点的蓝色 */
 }
 </style>

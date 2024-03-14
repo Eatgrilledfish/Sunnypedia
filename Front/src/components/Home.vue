@@ -7,6 +7,7 @@
       <div class="text-overlay">
         <h2 class="overlay-heading">Introducing Sunny Pedia</h2>
         <p>Verified resources to stay sun smart while lying sunny side up</p>
+        <button class="uv-aware-button" @click="goToPage('/uva-aware')">Why does it matter?</button>
       </div>
     </div>
   </div>
@@ -151,6 +152,22 @@ export default {
   color: #c09c84; /* 设置文本颜色 */
   font-style: italic; /* 使文本倾斜 */
 
+}
+
+.uv-aware-button {
+  margin-top: 20px; /* 在按钮和上面的文本之间添加一些空间 */
+  padding: 10px 20px; /* 按钮内部的填充，根据需要调整 */
+  background-color: #003366; /* 深蓝色背景 */
+  color: #c09c84; 
+  border: none; /* 移除边框 */
+  cursor: pointer; /* 鼠标悬停时显示指针 */
+  font-style: italic; /* 斜体文本 */
+  font-weight: 800;
+  border-radius: 5px; /* 轻微的边框圆角 */
+}
+
+.uv-aware-button:hover {
+  background-color: #002244; /* 鼠标悬停时深一点的蓝色 */
 }
 
 

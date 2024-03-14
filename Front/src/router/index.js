@@ -5,7 +5,7 @@ import SunscreenCalculator from '../components/SunscreenCalculator.vue';
 import UvaAware from '../components/UvaAware.vue';
 import Home from '../components/Home.vue';
 import Uvmap from '../components/UvMap.vue';
-import clothing from '../components/clothing.vue';
+import Clothing from '../components/clothing.vue';
 
 
 // import routes
@@ -34,7 +34,7 @@ const routes = [
   {
     path: '/clothing',
     name: 'clothing',
-    component: clothing
+    component: Clothing
   },
 ]
 

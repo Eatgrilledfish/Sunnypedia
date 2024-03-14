@@ -25,6 +25,9 @@
     <p2 v-else>
       {{ item.text2 }}
     </p2>
+    <div v-if="index === 1" class="button-container">
+      <button class="uv-index-button" @click="goToPage('/uv-map')">UV index today</button>
+    </div>
   </div>
     <div class="wrap-column">
       <div class="echart-container" ref="echartDom"></div>
@@ -43,6 +46,8 @@
 import * as echarts from 'echarts';
 import TemperatureAnomaly from '@/assets/Temperature Anomaly.png';
 import OzoneHole from '@/assets/The ozone hole.png';
+
+
 export default {
   name: 'ThreeColumns',
   data() {
@@ -79,6 +84,9 @@ export default {
     this.fetchDataAndInitChart();
   },
   methods: {
+    goToPage(path) {
+    this.$router.push(path);
+  },
     fetchDataAndInitChart() {
       fetch('https://aokodaisuki.com/api/graph')
         .then(response => response.json())
@@ -137,6 +145,31 @@ export default {
   align-items: flex-start;
   
 }
+.button-container {
+  display: flex;
+  justify-content: center; /* 水平居中 */
+  align-items: center; /* 垂直居中 */
+  margin-top: 20px;
+  flex-direction: column; /* 确保内容垂直排列 */
+}
+.uv-index-button {
+  padding: 10px 20px;
+  background-color: #003366; /* 示例蓝色背景 */
+  color: #c09c84; /* 文本颜色为白色 */
+  border: none;
+  border-radius: 4px; /* 轻微的圆角 */
+  cursor: pointer;
+   /* 根据需要调整字体大小 */
+  font-weight: 800; /* 字体加粗 */
+  font-style: italic;
+  display: inline-block; /* 确保按钮正确显示 */
+  transition: background-color 0.3s ease; /* 平滑过渡效果 */
+}
+
+.uv-index-button:hover {
+  background-color: #002244; /* 鼠标悬停时的背景颜色变深 */
+}
+
 
 .column {
   flex: 1;
@@ -214,4 +247,7 @@ export default {
   height:300px;
 
 }
+
+
+
 </style>
