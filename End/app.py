@@ -8,7 +8,7 @@ import mysql.connector
 
 
 app = Flask(__name__)
-CORS(app)
+CORS(app)  # 允许所有域的跨源请求
 
 api = Api(app, 
           version='1.0', 
